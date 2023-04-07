@@ -2,11 +2,7 @@ CC = g++
 CFLAGS = -std=c++11 -Wall -Iinclude
 
 LDFLAGS = -Llibs
-ifeq ($(shell uname), Windows_NT)
-    # Link against mingw32 library on Windows
-    LDFLAGS += -lmingw32
-endif
- LDFLAGS += -lSDL2main -lSDL2
+LDFLAGS += -lSDL2main -lSDL2
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -27,4 +23,4 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_FILES) $(BIN_DIR)/$(BIN_NAME)
+	@rm -rf $(OBJ_FILES) $(BIN_DIR)/$(BIN_NAME)
