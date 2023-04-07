@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -std=c++11 -Wall -Iinclude
 
 LDFLAGS = -Llibs
-LDFLAGS += -lSDL2main -lSDL2
+LDFLAGS += -lSDL2main -lSDL2 -lSDL2_image
 
 SRC_DIR = src
 OBJ_DIR = obj
