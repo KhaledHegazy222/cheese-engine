@@ -23,4 +23,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	@echo "Cleaning ..."
 	@rm -rf $(OBJ_FILES) $(BIN_DIR)/$(BIN_NAME)
+	@echo "Done"
