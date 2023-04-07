@@ -34,3 +34,6 @@
 # Scripts
 *.bat
 *.sh
+
+# User Settings
+.vscode
