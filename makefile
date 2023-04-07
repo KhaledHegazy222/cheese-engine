@@ -17,12 +17,14 @@ BIN_NAME = cheeseEngine.exe
 all: $(BIN_DIR)/$(BIN_NAME)
 
 $(BIN_DIR)/$(BIN_NAME): $(OBJ_FILES)
+	$(shell mkdir -p $(BIN_DIR))
 	$(CC) $^ $(LDFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(shell mkdir -p $(@D))
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "Cleaning ..."
-	@rm -rf $(OBJ_FILES) $(BIN_DIR)/$(BIN_NAME)
+	@rm -rf $(OBJ_DIR) $(BIN_DIR)/$(BIN_NAME)
 	@echo "Done"
