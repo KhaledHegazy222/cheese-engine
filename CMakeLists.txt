@@ -2,15 +2,36 @@ project(CHEESE_ENGINE)
 cmake_minimum_required(VERSION 3.5.1)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
-message(${CMAKE_MODULE_PATH})
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+file(GLOB_RECURSE SRCs  src/*.cpp)
+
+message(${SRCs})
+
+
+add_executable(${PROJECT_NAME} ${SRCs})
+target_include_directories(${PROJECT_NAME} PUBLIC include)
+target_link_directories(${PROJECT_NAME} PUBLIC src/gui/gui.cpp)
+
 
 find_package(SDL2 REQUIRED)
 target_link_libraries(${PROJECT_NAME} SDL2::Main)
 
 find_package(SDL2_image REQUIRED)
 target_link_libraries(${PROJECT_NAME} SDL2::Main SDL2::Image)
+
+if(SDL2_FOUND)
+    message("Found SDL2")
+else()
+    message("SDL2 is missing")
+endif()
+
+
+if(SDL2_IMAGE_FOUND)
+    message("Found SDL2_IMAGE")
+else()
+    message("SDL2_IMAGE is missing")
+endif()
+
 
 
 
