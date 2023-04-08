@@ -4,13 +4,8 @@ cmake_minimum_required(VERSION 3.5.1)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 file(GLOB_RECURSE SRCs  src/*.cpp)
-
-message(${SRCs})
-
-
 add_executable(${PROJECT_NAME} ${SRCs})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
-target_link_directories(${PROJECT_NAME} PUBLIC src/gui/gui.cpp)
 
 
 find_package(SDL2 REQUIRED)
