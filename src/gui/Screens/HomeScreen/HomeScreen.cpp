@@ -54,9 +54,9 @@ bool Button::isClicked(int mouseX, int mouseY)
 void HomeScreen::init()
 {
 
-    backgroundHomeScreenTex = TextureManager::loadTexture("./src/assets/backgroundHomeScreen.png");
-    chessLogoTex = TextureManager::loadTexture("./src/assets/chessLogo.png");
-    font = TTF_OpenFont("../../../assets/fonts/OpenSans.ttf", 100);
+    backgroundHomeScreenTex = TextureManager::loadTexture(GET("src/assets/backgroundHomeScreen.png"));
+    chessLogoTex = TextureManager::loadTexture(GET("/src/assets/chessLogo.png"));
+    font = TTF_OpenFont(GET("src/assets/fonts/OpenSans.ttf"), 100);
 
     startBtn.init(
         Game::getPos(1, false) / 5,
