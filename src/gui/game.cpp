@@ -1,15 +1,7 @@
 #include <gui/game.h>
-#include "textureManager.h"
-#include "homeScreen/homeScreen.h"
+#include "textureManager/textureManager.h"
+#include "screens/homeScreen/homeScreen.h"
 #include <iostream>
-
-enum presentedScreen
-{
-    HOME_SCREEN,
-    PLAY_SCREEN,
-    ANALYSIS_SCREEN,
-    STATISTICS_SCREEN
-};
 
 SDL_Renderer *Game::renderer;
 TTF_Font *Game::font;

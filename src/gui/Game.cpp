@@ -1,7 +1,7 @@
 #include <gui/Game.h>
 #include <SDL_ttf.h>
 
-string CHEESE_ENGINE = filesystem::path(__FILE__).parent_path().parent_path().parent_path().string(); // CHEESE-ENGINE Home Directory Path
+// string CHEESE_ENGINE = filesystem::path(__FILE__).parent_path().parent_path().parent_path().string(); // CHEESE-ENGINE Home Directory Path
 
 
 SDL_Renderer* Game::renderer = nullptr;
@@ -9,12 +9,12 @@ SDL_Window* Game::window = nullptr;
 int Game::h;
 int Game::w;
 
-Game::Game(){
+// Game::Game(){
 
-}
-Game::~Game(){
+// }
+// Game::~Game(){
 
-}
+// }
 
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
     int flags = ((fullscreen) ? SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_RESIZABLE);
