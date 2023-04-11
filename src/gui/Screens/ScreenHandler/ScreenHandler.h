@@ -1,8 +1,7 @@
 #pragma once
 #include <SDL.h>
 
-enum screen
-{
+enum screen {
     HOME_SCREEN,
     PLAY_SCREEN,
     ANALYSIS_SCREEN,

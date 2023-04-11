@@ -1,6 +1,10 @@
-#include <iostream>
-#include <gui/Game.h>
 #include "HomeScreen.h"
+
+#include <gui/Game.h>
+
+#include <iostream>
+
+#include "../ScreenHandler/ScreenHandler.h"
 
 SDL_Texture *backgroundHomeScreenTex;
 SDL_Texture *chessLogoTex;
@@ -12,8 +16,7 @@ Button analysisBtn;
 Button statisticsBtn;
 Button quitBtn;
 
-void Button::init(int width, int height, int posX, int posY, const char *text)
-{
+void Button::init(int width, int height, int posX, int posY, const char *text) {
     this->width = width;
     this->height = height;
     this->posX = posX;
@@ -21,8 +24,7 @@ void Button::init(int width, int height, int posX, int posY, const char *text)
     this->text = text;
 }
 
-void Button::render()
-{
+void Button::render() {
     SDL_Rect button;
     button.w = this->width;
     button.h = this->height;
@@ -46,17 +48,14 @@ void Button::render()
     SDL_DestroyTexture(texture);
 }
 
-bool Button::isClicked(int mouseX, int mouseY)
-{
+bool Button::isClicked(int mouseX, int mouseY) {
     return mouseX >= posX && mouseX <= posX + width && mouseY >= posY && mouseY <= posY + height;
 }
 
-void HomeScreen::init()
-{
-
-    backgroundHomeScreenTex = TextureManager::loadTexture(GET("src/assets/backgroundHomeScreen.png"));
-    chessLogoTex = TextureManager::loadTexture(GET("/src/assets/chessLogo.png"));
-    font = TTF_OpenFont(GET("src/assets/fonts/OpenSans.ttf"), 100);
+void HomeScreen::init() {
+    backgroundHomeScreenTex = TextureManager::LoadTexture("src/gui/assets/backgroundHomeScreen.png");
+    chessLogoTex = TextureManager::LoadTexture("src/assets/chessLogo.png");
+    font = TTF_OpenFont(GET("src/gui/assets/fonts/OpenSans.ttf"), 100);
 
     startBtn.init(
         Game::getPos(1, false) / 5,
@@ -85,29 +84,25 @@ void HomeScreen::init()
         "Quit");
 }
 
-void HomeScreen::update()
-{
+void HomeScreen::update() {
 }
 
-void HomeScreen::handleEvents(SDL_Event *event)
-{
+void HomeScreen::handleEvents(SDL_Event *event) {
 }
 
-void HomeScreen::render()
-{
-
+void HomeScreen::render() {
     SDL_Rect backGroundRect;
     backGroundRect.w = Game::getPos(1, false);
     backGroundRect.h = Game::getPos(1, true);
     backGroundRect.x = backGroundRect.y = 0;
-    TextureManager::drawTexture(backgroundHomeScreenTex, NULL, &backGroundRect);
+    TextureManager::Draw(backgroundHomeScreenTex, SDL_Rect{0, 0, 329, 277}, backGroundRect);
 
     SDL_Rect chessLogoRect;
     chessLogoRect.w = Game::getPos(1, false) / 3;
     chessLogoRect.h = Game::getPos(1, true) / 2;
     chessLogoRect.x = (Game::getPos(1, false) - chessLogoRect.w) / 2;
     chessLogoRect.y = Game::getPos(1, true) / 5;
-    TextureManager::drawTexture(chessLogoTex, NULL, &chessLogoRect);
+    TextureManager::Draw(chessLogoTex, SDL_Rect{0, 0, 136, 141}, chessLogoRect);
 
     startBtn.render();
     analysisBtn.render();
@@ -129,27 +124,18 @@ void HomeScreen::render()
     SDL_DestroyTexture(texture);
 }
 
-void HomeScreen::cleanUp()
-{
+void HomeScreen::cleanUp() {
     TTF_CloseFont(font);
 }
 
-void HomeScreen::handleClicks(int mouseX, int mouseY)
-{
-    if (startBtn.isClicked(mouseX, mouseY))
-    {
-        std::cout << startBtn.text << std::endl;
-    }
-    else if (analysisBtn.isClicked(mouseX, mouseY))
-    {
+void HomeScreen::handleClicks(int mouseX, int mouseY) {
+    if (startBtn.isClicked(mouseX, mouseY)) {
+        switchScreen(PLAY_SCREEN);
+    } else if (analysisBtn.isClicked(mouseX, mouseY)) {
         std::cout << analysisBtn.text << std::endl;
-    }
-    else if (statisticsBtn.isClicked(mouseX, mouseY))
-    {
+    } else if (statisticsBtn.isClicked(mouseX, mouseY)) {
         std::cout << statisticsBtn.text << std::endl;
-    }
-    else if (quitBtn.isClicked(mouseX, mouseY))
-    {
+    } else if (quitBtn.isClicked(mouseX, mouseY)) {
         std::cout << quitBtn.text << std::endl;
     }
 }
