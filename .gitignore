@@ -31,7 +31,6 @@ Makefile
 *.la
 *.a
 *.lib
-
 # Executables
 *.exe
 *.out
@@ -43,5 +42,7 @@ Makefile
 
 # User Settings
 .vscode
+.clang-format
 
+# build folders
 build
