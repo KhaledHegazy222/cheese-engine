@@ -1,12 +1,18 @@
-#include <gui/game.h>
 #include "../../textureManager/textureManager.h"
+#include <SDL_ttf.h>
+
 class HomeScreen
 {
+private:
+    void handleClicks(int, int);
 
 public:
+    static TTF_Font *font;
     static void init();
     static void render();
-    static void handleClicks(int, int);
+    static void update();
+    static void handleEvents(SDL_Event *);
+    static void cleanUp();
 };
 
 class Button

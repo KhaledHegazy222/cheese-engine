@@ -1,6 +1,6 @@
 #pragma once
 
-#include <gui/game.h>
+#include <gui/Game.h>
 
 class TextureManager
 {
