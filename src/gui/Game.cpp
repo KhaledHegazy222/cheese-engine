@@ -28,7 +28,6 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
             if (renderer) {
                 TTF_Init();
                 SDL_GetWindowSize(Game::window, &Game::w, &Game::h);
-                playScreen.Init();
                 SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
                 isRunning = 1;   // Game Intialized Successfully.!
                 initScreen();
@@ -67,7 +66,7 @@ void Game::update() {
 }
 void Game::render() {
     SDL_RenderClear(renderer);
-
+    renderScreen();
     SDL_RenderPresent(renderer);
     return;
 }
