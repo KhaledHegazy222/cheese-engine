@@ -1,39 +1,39 @@
 #include "../../include/board/board.h"
 
-void Board::removePieceFrom(const int x, const int y)
+void Board::removePieceFrom(const int column, const int row)
 {
-  if (x < 0 or y < 0 or x > 7 or y > 7)
+  if (column < 0 or row < 0 or column > 7 or row > 7)
     throw("Invalid piece position");
 
-  board[y] &= (((~0) << 4) << (4 * x)) | ((1 << (4 * x)) - 1);
+  board[row] &= (((~0) << 4) << (4 * column)) | ((1 << (4 * column)) - 1);
 }
 
-void Board::setPieceInto(const int x, const int y, const Piece piece, const Color color)
+void Board::setPieceInto(const int column, const int row, const Piece piece, const Color color)
 {
-  if (x < 0 or y < 0 or x > 7 or y > 7)
+  if (column < 0 or row < 0 or column > 7 or row > 7)
     throw("Invalid piece position");
 
-  removePieceFrom(x, y);
+  removePieceFrom(column, row);
   int p = static_cast<int>(piece);
   if (color == Color::White)
     p |= (1 << 3);
-  board[y] |= (p << (4 * x));
+  board[row] |= (p << (4 * column));
 }
 
-void Board::move(const int x0, const int y0, const int x1, const int y1)
+void Board::move(const int column0, const int row0, const int column1, const int row1)
 {
-  std::pair<Piece, Color> state = getSquareState(x0, y0);
-  removePieceFrom(x0, y0);
-  removePieceFrom(x1, y1);
-  setPieceInto(x1, y1, state.first, state.second);
+  std::pair<Piece, Color> state = getSquareState(column0, row0);
+  removePieceFrom(column0, row0);
+  removePieceFrom(column1, row1);
+  setPieceInto(column1, row1, state.first, state.second);
 }
 
-std::pair<Piece, Color> Board::getSquareState(const int x, const int y)
+std::pair<Piece, Color> Board::getSquareState(const int column, const int row)
 {
-  if (x < 0 or y < 0 or x > 7 or y > 7)
+  if (column < 0 or row < 0 or column > 7 or row > 7)
     throw("Invalid piece position");
 
-  int state = (board[y] >> (4 * x)) & ((1 << 4) - 1);
+  int state = (board[row] >> (4 * column)) & ((1 << 4) - 1);
   return std::make_pair((Piece)(state & 7), (Color)(state >> 3));
 }
 
