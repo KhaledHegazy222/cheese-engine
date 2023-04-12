@@ -9,6 +9,7 @@ string CHEESE_ENGINE = filesystem::path(__FILE__).parent_path().parent_path().pa
 PlayScreen playScreen;
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Window* Game::window = nullptr;
+bool Game::isRunning;
 int Game::h;
 int Game::w;
 
@@ -66,6 +67,9 @@ void Game::render() {
     renderScreen();
     SDL_RenderPresent(renderer);
     return;
+}
+void Game::stopGame(){
+    isRunning = 0;
 }
 void Game::clean() {
     cleanUpScreen();

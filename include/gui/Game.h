@@ -24,14 +24,14 @@ class Game {
    public:
     Game();
     ~Game();
-
-    void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
-    void handleEvents();
-    void update();
-    void render();
-    void clean();
-    void handleFPS();
-    bool running() { return isRunning; }
+    static void stopGame();
+    static void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
+    static void handleEvents();
+    static void update();
+    static void render();
+    static void clean();
+    static void handleFPS();
+    static bool running() { return isRunning; }
     static int getPos(float p, bool isY);
 
     static SDL_Renderer *renderer;
@@ -39,7 +39,7 @@ class Game {
     static int w, h;
 
    private:
-    bool isRunning;
+    static bool isRunning;
 };
 
 #endif
