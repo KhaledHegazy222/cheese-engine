@@ -19,7 +19,8 @@ void Board::setPieceInto(const int column, const int row, const Piece piece,
     board[row] |= (p << (4 * column));
 }
 
-void Board::move(const int column0, const int row0, const int column1, const int row1) {
+void Board::move(const int column0, const int row0, const int column1,
+                 const int row1) {
     std::pair<Piece, Color> state = getSquareState(column0, row0);
     removePieceFrom(column0, row0);
     removePieceFrom(column1, row1);

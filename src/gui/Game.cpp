@@ -25,11 +25,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height,
     int flags =
         ((fullscreen) ? SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP
                       : SDL_WINDOW_RESIZABLE);
-<<<<<<< HEAD
-    isRunning = 0;   // It will be True if Game is intialized Successfully.!
-=======
     isRunning = 0; // It will be True if Game is intialized Successfully.!
->>>>>>> main
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -66,13 +62,8 @@ void Game::handleFPS() {
     if (frameDelay > frameTime) {
         SDL_Delay(frameDelay - frameTime);
     }
-<<<<<<< HEAD
-    frameStart = SDL_GetTicks64();   // Start Calculating from here till next call
-                                     // of 'handleFPS()'
-=======
     frameStart = SDL_GetTicks64(); // Start Calculating from here till next call
                                    // of 'handleFPS()'
->>>>>>> main
 }
 void Game::update() { updateScreen(); }
 void Game::render() {
@@ -91,12 +82,7 @@ void Game::clean() {
     return;
 }
 
-<<<<<<< HEAD
-int Game::getPos(float p, bool isY) {   // 20% -> p = 0.20, for X coordinates isY
-                                        // = 0 and for X coordinates isY = 1
-=======
 int Game::getPos(float p, bool isY) { // 20% -> p = 0.20, for X coordinates isY
                                       // = 0 and for X coordinates isY = 1
->>>>>>> main
     return p * ((isY) ? Game::h : Game::w);
 }
