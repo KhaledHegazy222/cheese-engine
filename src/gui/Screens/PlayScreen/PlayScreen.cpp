@@ -14,6 +14,7 @@ void PlayScreen::init() {
     Background = new GameObject("src/gui/assets/Background.jpg",
                                 SDL_Rect{0, 0, 2500, 1600},
                                 SDL_Rect{0, 0, Game::w, Game::h});
+    board->selectedCell = std::make_pair(-1, -1);
 }
 void PlayScreen::cleanUp() {
     delete board;
@@ -55,16 +56,11 @@ void PlayScreen::handleClicks(int mouseX, int mouseY) {
         std::pair<int, int> chessCell = board->clickToCell(mouseX, mouseY);
         if (board->selectedCell == std::make_pair(-1, -1)) {
             board->selectedCell = chessCell;
-            std::cout << board->selectedCell.first << " "
-                      << board->selectedCell.second << std::endl;
         } else if (board->selectedCell != chessCell) {
-            boardRepresentation->move(board->selectedCell.first,
-                                      board->selectedCell.second,
-                                      chessCell.first, chessCell.second);
+            boardRepresentation->move(board->selectedCell.second,
+                                      board->selectedCell.first,
+                                      chessCell.second, chessCell.first);
             board->selectedCell = std::make_pair(-1, -1);
-
-            std::cout << chessCell.first << " " << chessCell.second
-                      << std::endl;
         }
     }
 }
