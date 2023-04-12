@@ -15,7 +15,7 @@ extern string CHEESE_ENGINE;
 #define WIDTH 800
 #define HIGHT 640
 #define aspectRatio (16.0 / 9.0)
-#define FPS 60
+#define FPS 144
 #define frameDelay 1000 / FPS
 
 #define GET(PATH) string(CHEESE_ENGINE + "/" + PATH).c_str()   // Get relative path despite of the place of running the project
