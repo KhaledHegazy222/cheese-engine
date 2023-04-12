@@ -135,59 +135,59 @@ void chessBoard::Render() {
                             squareLength};
                 }
                 switch (state.second) {
-                    case Color::White:   // White
-                        switch (state.first) {
-                            case Piece::Pawn:   // Pawn
-                                TextureManager::Draw(this->wPawn, src, dest);
-                                break;
-                            case Piece::Rock:   // Rock
-                                TextureManager::Draw(this->wRock, src, dest);
-                                break;
-                            case Piece::Knight:   // Knight
-                                TextureManager::Draw(this->wKnight, src, dest);
-                                break;
-                            case Piece::Bishop:   // Bishop
-                                TextureManager::Draw(this->wBishop, src, dest);
-                                break;
-                            case Piece::Queen:   // Queen
-                                TextureManager::Draw(this->wQueen, src, dest);
-                                break;
-                            case Piece::King:   // King
-                                TextureManager::Draw(this->wKing, src, dest);
-                                break;
-
-                            default:
-                                break;
-                        }
+                case Color::White: // White
+                    switch (state.first) {
+                    case Piece::Pawn: // Pawn
+                        TextureManager::Draw(this->wPawn, src, dest);
                         break;
-                    case Color::Black:   // Black
-                        switch (state.first) {
-                            case Piece::Pawn:   // Pawn
-                                TextureManager::Draw(this->bPawn, src, dest);
-                                break;
-                            case Piece::Rock:   // Rock
-                                TextureManager::Draw(this->bRock, src, dest);
-                                break;
-                            case Piece::Knight:   // Knight
-                                TextureManager::Draw(this->bKnight, src, dest);
-                                break;
-                            case Piece::Bishop:   // Bishop
-                                TextureManager::Draw(this->bBishop, src, dest);
-                                break;
-                            case Piece::Queen:   // Queen
-                                TextureManager::Draw(this->bQueen, src, dest);
-                                break;
-                            case Piece::King:   // King
-                                TextureManager::Draw(this->bKing, src, dest);
-                                break;
-
-                            default:
-                                break;
-                        }
+                    case Piece::Rock: // Rock
+                        TextureManager::Draw(this->wRock, src, dest);
                         break;
+                    case Piece::Knight: // Knight
+                        TextureManager::Draw(this->wKnight, src, dest);
+                        break;
+                    case Piece::Bishop: // Bishop
+                        TextureManager::Draw(this->wBishop, src, dest);
+                        break;
+                    case Piece::Queen: // Queen
+                        TextureManager::Draw(this->wQueen, src, dest);
+                        break;
+                    case Piece::King: // King
+                        TextureManager::Draw(this->wKing, src, dest);
+                        break;
+
                     default:
-
                         break;
+                    }
+                    break;
+                case Color::Black: // Black
+                    switch (state.first) {
+                    case Piece::Pawn: // Pawn
+                        TextureManager::Draw(this->bPawn, src, dest);
+                        break;
+                    case Piece::Rock: // Rock
+                        TextureManager::Draw(this->bRock, src, dest);
+                        break;
+                    case Piece::Knight: // Knight
+                        TextureManager::Draw(this->bKnight, src, dest);
+                        break;
+                    case Piece::Bishop: // Bishop
+                        TextureManager::Draw(this->bBishop, src, dest);
+                        break;
+                    case Piece::Queen: // Queen
+                        TextureManager::Draw(this->bQueen, src, dest);
+                        break;
+                    case Piece::King: // King
+                        TextureManager::Draw(this->bKing, src, dest);
+                        break;
+
+                    default:
+                        break;
+                    }
+                    break;
+                default:
+
+                    break;
                 }
             }
         }

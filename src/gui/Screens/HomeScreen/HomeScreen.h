@@ -3,10 +3,10 @@
 #include "../../TextureManager/TextureManager.h"
 
 class HomeScreen {
-   private:
+  private:
     static void handleClicks(int, int);
 
-   public:
+  public:
     static TTF_Font *font;
     static void init();
     static void render();
@@ -18,7 +18,7 @@ class HomeScreen {
 class Button {
     int width, height, posX, posY;
 
-   public:
+  public:
     const char *text;
     void init(int, int, int, int, const char *);
     void render();

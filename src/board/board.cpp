@@ -91,30 +91,30 @@ void Board::resolveBoardFen(const std::string &board) {
         } else {
             Color color = (Color)((bool)std::isupper(c));
             switch (c) {
-                case 'K':
-                case 'k':
-                    setPieceInto(column, row, Piece::King, color);
-                    break;
-                case 'P':
-                case 'p':
-                    setPieceInto(column, row, Piece::Pawn, color);
-                    break;
-                case 'N':
-                case 'n':
-                    setPieceInto(column, row, Piece::Knight, color);
-                    break;
-                case 'B':
-                case 'b':
-                    setPieceInto(column, row, Piece::Bishop, color);
-                    break;
-                case 'R':
-                case 'r':
-                    setPieceInto(column, row, Piece::Rock, color);
-                    break;
-                case 'Q':
-                case 'q':
-                    setPieceInto(column, row, Piece::Queen, color);
-                    break;
+            case 'K':
+            case 'k':
+                setPieceInto(column, row, Piece::King, color);
+                break;
+            case 'P':
+            case 'p':
+                setPieceInto(column, row, Piece::Pawn, color);
+                break;
+            case 'N':
+            case 'n':
+                setPieceInto(column, row, Piece::Knight, color);
+                break;
+            case 'B':
+            case 'b':
+                setPieceInto(column, row, Piece::Bishop, color);
+                break;
+            case 'R':
+            case 'r':
+                setPieceInto(column, row, Piece::Rock, color);
+                break;
+            case 'Q':
+            case 'q':
+                setPieceInto(column, row, Piece::Queen, color);
+                break;
             }
             ++column;
         }

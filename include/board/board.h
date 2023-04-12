@@ -4,13 +4,7 @@
 #include <string>
 #include <vector>
 
-enum class Piece { None,
-                   King,
-                   Pawn,
-                   Knight,
-                   Bishop,
-                   Rock,
-                   Queen };
+enum class Piece { None, King, Pawn, Knight, Bishop, Rock, Queen };
 
 enum class Color {
     Black,
@@ -44,7 +38,7 @@ class Board {
     void resolveBoardFen(const std::string &);
     bool isValidFEN(const std::string &);
 
-   public:
+  public:
     Board();
     // throw error if the given FEN is invalid
     Board(const std::string);
