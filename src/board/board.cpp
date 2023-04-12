@@ -1,43 +1,41 @@
 #include "../../include/board/board.h"
 
-void Board::removePieceFrom(const int column, const int row)
-{
-  if (column < 0 or row < 0 or column > 7 or row > 7)
-    throw("Invalid piece position");
+void Board::removePieceFrom(const int column, const int row) {
+    if (column < 0 or row < 0 or column > 7 or row > 7)
+        throw("Invalid piece position");
 
-  board[row] &= (((~0) << 4) << (4 * column)) | ((1 << (4 * column)) - 1);
+    board[row] &= (((~0) << 4) << (4 * column)) | ((1 << (4 * column)) - 1);
 }
 
-void Board::setPieceInto(const int column, const int row, const Piece piece, const Color color)
-{
-  if (column < 0 or row < 0 or column > 7 or row > 7)
-    throw("Invalid piece position");
+void Board::setPieceInto(const int column, const int row, const Piece piece,
+                         const Color color) {
+    if (column < 0 or row < 0 or column > 7 or row > 7)
+        throw("Invalid piece position");
 
-  removePieceFrom(column, row);
-  int p = static_cast<int>(piece);
-  if (color == Color::White)
-    p |= (1 << 3);
-  board[row] |= (p << (4 * column));
+    removePieceFrom(column, row);
+    int p = static_cast<int>(piece);
+    if (color == Color::White)
+        p |= (1 << 3);
+    board[row] |= (p << (4 * column));
 }
 
-void Board::move(const int column0, const int row0, const int column1, const int row1)
-{
-  std::pair<Piece, Color> state = getSquareState(column0, row0);
-  removePieceFrom(column0, row0);
-  removePieceFrom(column1, row1);
-  setPieceInto(column1, row1, state.first, state.second);
+void Board::move(const int column0, const int row0, const int column1, const int row1) {
+    std::pair<Piece, Color> state = getSquareState(column0, row0);
+    removePieceFrom(column0, row0);
+    removePieceFrom(column1, row1);
+    setPieceInto(column1, row1, state.first, state.second);
 }
 
-std::pair<Piece, Color> Board::getSquareState(const int column, const int row)
-{
-  if (column < 0 or row < 0 or column > 7 or row > 7)
-    throw("Invalid piece position");
+std::pair<Piece, Color> Board::getSquareState(const int column, const int row) {
+    if (column < 0 or row < 0 or column > 7 or row > 7)
+        throw("Invalid piece position");
 
-  int state = (board[row] >> (4 * column)) & ((1 << 4) - 1);
-  return std::make_pair((Piece)(state & 7), (Color)(state >> 3));
+    int state = (board[row] >> (4 * column)) & ((1 << 4) - 1);
+    return std::make_pair((Piece)(state & 7), (Color)(state >> 3));
 }
 
-Board::Board() : Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {}
+Board::Board()
+    : Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {}
 
 Board::Board(const std::string fen) {
     if (!isValidFEN(fen))
@@ -58,10 +56,14 @@ Board::Board(const std::string fen) {
 
     // resolve castling component
     const std::string &castling = fenComponents[2];
-    notCastledYet[(int)Color::White][(int)Side::King] = (castling.find("K") != std::string::npos);
-    notCastledYet[(int)Color::White][(int)Side::Queen] = (castling.find("Q") != std::string::npos);
-    notCastledYet[(int)Color::Black][(int)Side::King] = (castling.find("k") != std::string::npos);
-    notCastledYet[(int)Color::Black][(int)Side::Queen] = (castling.find("q") != std::string::npos);
+    notCastledYet[(int)Color::White][(int)Side::King] =
+        (castling.find("K") != std::string::npos);
+    notCastledYet[(int)Color::White][(int)Side::Queen] =
+        (castling.find("Q") != std::string::npos);
+    notCastledYet[(int)Color::Black][(int)Side::King] =
+        (castling.find("k") != std::string::npos);
+    notCastledYet[(int)Color::Black][(int)Side::Queen] =
+        (castling.find("q") != std::string::npos);
 
     // resolve en passant component
     const std::string &enPassant = fenComponents[3];
@@ -149,9 +151,9 @@ bool Board::isValidFEN(const std::string &fen) {
                 return false;
             }
             rankSum = 0;
-        } else if (c != 'p' && c != 'P' && c != 'n' && c != 'N' &&
-                   c != 'b' && c != 'B' && c != 'r' && c != 'R' &&
-                   c != 'q' && c != 'Q' && c != 'k' && c != 'K') {
+        } else if (c != 'p' && c != 'P' && c != 'n' && c != 'N' && c != 'b' &&
+                   c != 'B' && c != 'r' && c != 'R' && c != 'q' && c != 'Q' &&
+                   c != 'k' && c != 'K') {
             return false;
         } else {
             rankSum++;
@@ -171,19 +173,22 @@ bool Board::isValidFEN(const std::string &fen) {
     // Check castling component for valid value
     const std::string &castling = fenComponents[2];
     if (castling == "" or
-        (castling != "-" && castling.find_first_not_of("KQkq") != std::string::npos)) {
+        (castling != "-" &&
+         castling.find_first_not_of("KQkq") != std::string::npos)) {
         return false;
     }
 
     // Check en passant component for valid value
     const std::string &enPassant = fenComponents[3];
     if (enPassant == "" or
-        (enPassant != "-" && (enPassant.length() != 2 || enPassant[0] < 'a' || enPassant[0] > 'h' ||
-                              enPassant[1] < '1' || enPassant[1] > '8'))) {
+        (enPassant != "-" &&
+         (enPassant.length() != 2 || enPassant[0] < 'a' || enPassant[0] > 'h' ||
+          enPassant[1] < '1' || enPassant[1] > '8'))) {
         return false;
     }
 
-    // Check halfMove clock and fullMove number components for valid integer values
+    // Check halfMove clock and fullMove number components for valid integer
+    // values
     try {
         const std::string &halfMoveClock = fenComponents[4];
         const std::string &fullMoveNumber = fenComponents[5];

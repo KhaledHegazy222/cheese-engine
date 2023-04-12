@@ -47,10 +47,12 @@ chessBoard::chessBoard() {
         swap(a1, a2);
     {
         for (int row = 0; row < 8; ++row) {
-            numRow[row] = new Text(24, string(1, '1' + row).c_str(), ((row % 2) ? a1 : a2));
+            numRow[row] = new Text(24, string(1, '1' + row).c_str(),
+                                   ((row % 2) ? a1 : a2));
         }
         for (int col = 0; col < 8; ++col) {
-            numCol[col] = new Text(24, string(1, 'a' + col).c_str(), ((col % 2) ? a1 : a2));
+            numCol[col] = new Text(24, string(1, 'a' + col).c_str(),
+                                   ((col % 2) ? a1 : a2));
         }
     }
 }
@@ -86,7 +88,10 @@ chessBoard::~chessBoard() {
 
 void chessBoard::Render() {
     // Draw Board
-    TextureManager::Draw(this->imageBoard, {0, 0, 1200, 1200}, {Game::getPos(0.22, 0), (Game::h - Game::getPos(0.48, 0)) / 2, Game::getPos(0.48, 0), Game::getPos(0.48, 0)});
+    TextureManager::Draw(this->imageBoard, {0, 0, 1200, 1200},
+                         {Game::getPos(0.22, 0),
+                          (Game::h - Game::getPos(0.48, 0)) / 2,
+                          Game::getPos(0.48, 0), Game::getPos(0.48, 0)});
 
     // Numering the Board
     {
@@ -101,9 +106,15 @@ void chessBoard::Render() {
         }
         for (int col = 0; col < 8; ++col) {
             if (isReversed) {
-                numCol[7 - col]->render(xStart - 3 + (col + 1) * squareLength - numCol[col]->destRect.w, yStart - 1 + squareLength - numCol[col]->destRect.h);
+                numCol[7 - col]->render(xStart - 3 + (col + 1) * squareLength -
+                                            numCol[col]->destRect.w,
+                                        yStart - 1 + squareLength -
+                                            numCol[col]->destRect.h);
             } else {
-                numCol[col]->render(xStart - 3 + (col + 1) * squareLength - numCol[col]->destRect.w, yStart - 1 + squareLength - numCol[col]->destRect.h);
+                numCol[col]->render(xStart - 3 + (col + 1) * squareLength -
+                                        numCol[col]->destRect.w,
+                                    yStart - 1 + squareLength -
+                                        numCol[col]->destRect.h);
             }
         }
     }

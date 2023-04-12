@@ -16,7 +16,7 @@ class chessBoard {
     std::pair<int, int> clickToCell(int posX, int posY);
     pair<int, int> selectedCell;
 
-  private:
+   private:
     SDL_Texture *imageBoard;
     SDL_Texture *wPawn;
     SDL_Texture *wKnight;
