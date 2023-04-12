@@ -44,13 +44,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 void Game::handleEvents() {
     SDL_Event event;
     SDL_PollEvent(&event);
-    switch (event.type) {
-        case SDL_QUIT:
-            isRunning = false;
-            break;
-
-        default:
-            handleEventsScreen(&event);
+    if (event.type == SDL_QUIT)
+        isRunning = false;
+    else {
+        handleEventsScreen(&event);
     }
 }
 void Game::handleFPS() {

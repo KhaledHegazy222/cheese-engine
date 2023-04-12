@@ -11,6 +11,7 @@ class PlayScreen {
     static void handleEvents(SDL_Event *);
 
    private:
+    static void handleClicks(int, int);
     static int paddingX, paddingY;
     static int w, h;
 };
