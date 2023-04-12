@@ -46,11 +46,14 @@ class Board {
     void resolveBoardFen(const std::string &);
     bool isValidFEN(const std::string &);
 
-   public:
-    Board();
-    // throw error if the given FEN is invalid
-    Board(const std::string);
-    std::pair<Piece, Color> getSquareState(const int, const int);
-    // throw error if the given squares positions is invalid
-    void move(const int, const int, const int, const int);
+public:
+  Board();
+  // throw error if the given FEN is invalid
+  Board(const std::string);
+  // takes column, row of the square and return state
+  // throw error if the given squares positions is invalid
+  std::pair<Piece, Color> getSquareState(const int, const int);
+  // takes column, row of previous and next square and move previous to next
+  // throw error if the given squares positions is invalid
+  void move(const int, const int, const int, const int);
 };
