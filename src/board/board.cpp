@@ -26,7 +26,10 @@ void Board::move(const int x0, const int y0, const int x1, const int y1) {
 }
 
 std::pair<Piece, Color> Board::getSquareState(const int x, const int y) {
-    int state = (board[y] >> (4 * x)) & ((1 << 4) - 1);
+    if (x < 0 or y < 0 or x > 7 or y > 7)
+    throw("Invalid piece position");
+
+  int state = (board[y] >> (4 * x)) & ((1 << 4) - 1);
     return std::make_pair((Piece)(state & 7), (Color)(state >> 3));
 }
 
