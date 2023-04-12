@@ -4,15 +4,7 @@
 #include <string>
 #include <vector>
 
-enum class Piece {
-    None,
-    King,
-    Pawn,
-    Knight,
-    Bishop,
-    Rock,
-    Queen
-};
+enum class Piece { None, King, Pawn, Knight, Bishop, Rock, Queen };
 
 enum class Color {
     Black,
@@ -33,8 +25,8 @@ class Board {
     Color activeColor;
     // possibleEnPassantTarget = {-1, -1} in case no target otherwise {x, y}
     std::pair<int, int> possibleEnPassantTarget;
-    // how many moves both players have made since the last pawn advance or piece capture
-    // if it equal to 100 that informs that game is draw
+    // how many moves both players have made since the last pawn advance or
+    // piece capture if it equal to 100 that informs that game is draw
     int numberOfHalfMoves;
     // number of completed turns in the game
     // incremented by one every time black moves
@@ -46,7 +38,7 @@ class Board {
     void resolveBoardFen(const std::string &);
     bool isValidFEN(const std::string &);
 
-   public:
+  public:
     Board();
     // throw error if the given FEN is invalid
     Board(const std::string);

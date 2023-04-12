@@ -7,7 +7,8 @@ void Board::removePieceFrom(const int x, const int y) {
     board[y] &= (((~0) << 4) << (4 * x)) | ((1 << (4 * x)) - 1);
 }
 
-void Board::setPieceInto(const int x, const int y, const Piece piece, const Color color) {
+void Board::setPieceInto(const int x, const int y, const Piece piece,
+                         const Color color) {
     if (x < 0 or y < 0 or x > 7 or y > 7)
         throw("Invalid piece position");
 
@@ -30,7 +31,8 @@ std::pair<Piece, Color> Board::getSquareState(const int x, const int y) {
     return std::make_pair((Piece)(state & 7), (Color)(state >> 3));
 }
 
-Board::Board() : Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {}
+Board::Board()
+    : Board("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {}
 
 Board::Board(const std::string fen) {
     if (!isValidFEN(fen))
@@ -51,10 +53,14 @@ Board::Board(const std::string fen) {
 
     // resolve castling component
     const std::string &castling = fenComponents[2];
-    notCastledYet[(int)Color::White][(int)Side::King] = (castling.find("K") != std::string::npos);
-    notCastledYet[(int)Color::White][(int)Side::Queen] = (castling.find("Q") != std::string::npos);
-    notCastledYet[(int)Color::Black][(int)Side::King] = (castling.find("k") != std::string::npos);
-    notCastledYet[(int)Color::Black][(int)Side::Queen] = (castling.find("q") != std::string::npos);
+    notCastledYet[(int)Color::White][(int)Side::King] =
+        (castling.find("K") != std::string::npos);
+    notCastledYet[(int)Color::White][(int)Side::Queen] =
+        (castling.find("Q") != std::string::npos);
+    notCastledYet[(int)Color::Black][(int)Side::King] =
+        (castling.find("k") != std::string::npos);
+    notCastledYet[(int)Color::Black][(int)Side::Queen] =
+        (castling.find("q") != std::string::npos);
 
     // resolve en passant component
     const std::string &enPassant = fenComponents[3];
@@ -82,30 +88,30 @@ void Board::resolveBoardFen(const std::string &board) {
         } else {
             Color color = (Color)((bool)std::isupper(c));
             switch (c) {
-                case 'K':
-                case 'k':
-                    setPieceInto(column, row, Piece::King, color);
-                    break;
-                case 'P':
-                case 'p':
-                    setPieceInto(column, row, Piece::Pawn, color);
-                    break;
-                case 'N':
-                case 'n':
-                    setPieceInto(column, row, Piece::Knight, color);
-                    break;
-                case 'B':
-                case 'b':
-                    setPieceInto(column, row, Piece::Bishop, color);
-                    break;
-                case 'R':
-                case 'r':
-                    setPieceInto(column, row, Piece::Rock, color);
-                    break;
-                case 'Q':
-                case 'q':
-                    setPieceInto(column, row, Piece::Queen, color);
-                    break;
+            case 'K':
+            case 'k':
+                setPieceInto(column, row, Piece::King, color);
+                break;
+            case 'P':
+            case 'p':
+                setPieceInto(column, row, Piece::Pawn, color);
+                break;
+            case 'N':
+            case 'n':
+                setPieceInto(column, row, Piece::Knight, color);
+                break;
+            case 'B':
+            case 'b':
+                setPieceInto(column, row, Piece::Bishop, color);
+                break;
+            case 'R':
+            case 'r':
+                setPieceInto(column, row, Piece::Rock, color);
+                break;
+            case 'Q':
+            case 'q':
+                setPieceInto(column, row, Piece::Queen, color);
+                break;
             }
             ++column;
         }
@@ -142,9 +148,9 @@ bool Board::isValidFEN(const std::string &fen) {
                 return false;
             }
             rankSum = 0;
-        } else if (c != 'p' && c != 'P' && c != 'n' && c != 'N' &&
-                   c != 'b' && c != 'B' && c != 'r' && c != 'R' &&
-                   c != 'q' && c != 'Q' && c != 'k' && c != 'K') {
+        } else if (c != 'p' && c != 'P' && c != 'n' && c != 'N' && c != 'b' &&
+                   c != 'B' && c != 'r' && c != 'R' && c != 'q' && c != 'Q' &&
+                   c != 'k' && c != 'K') {
             return false;
         } else {
             rankSum++;
@@ -164,19 +170,22 @@ bool Board::isValidFEN(const std::string &fen) {
     // Check castling component for valid value
     const std::string &castling = fenComponents[2];
     if (castling == "" or
-        (castling != "-" && castling.find_first_not_of("KQkq") != std::string::npos)) {
+        (castling != "-" &&
+         castling.find_first_not_of("KQkq") != std::string::npos)) {
         return false;
     }
 
     // Check en passant component for valid value
     const std::string &enPassant = fenComponents[3];
     if (enPassant == "" or
-        (enPassant != "-" && (enPassant.length() != 2 || enPassant[0] < 'a' || enPassant[0] > 'h' ||
-                              enPassant[1] < '1' || enPassant[1] > '8'))) {
+        (enPassant != "-" &&
+         (enPassant.length() != 2 || enPassant[0] < 'a' || enPassant[0] > 'h' ||
+          enPassant[1] < '1' || enPassant[1] > '8'))) {
         return false;
     }
 
-    // Check halfMove clock and fullMove number components for valid integer values
+    // Check halfMove clock and fullMove number components for valid integer
+    // values
     try {
         const std::string &halfMoveClock = fenComponents[4];
         const std::string &fullMoveNumber = fenComponents[5];

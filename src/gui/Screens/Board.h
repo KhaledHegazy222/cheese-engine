@@ -6,7 +6,7 @@
 #include "../TextRenderer/TextRenderer.h"
 
 class chessBoard {
-   public:
+  public:
     chessBoard();
     ~chessBoard();
     void Render();

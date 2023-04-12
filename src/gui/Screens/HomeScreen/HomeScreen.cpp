@@ -82,12 +82,12 @@ void HomeScreen::update() {}
 
 void HomeScreen::handleEvents(SDL_Event *event) {
     switch (event->type) {
-        case SDL_MOUSEBUTTONUP: {
-            int mouseX, mouseY;
-            SDL_GetMouseState(&mouseX, &mouseY);
-            handleClicks(mouseX, mouseY);
-            break;
-        }
+    case SDL_MOUSEBUTTONUP: {
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        handleClicks(mouseX, mouseY);
+        break;
+    }
     }
 }
 

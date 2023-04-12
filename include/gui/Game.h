@@ -18,14 +18,18 @@ extern string CHEESE_ENGINE;
 #define FPS 144
 #define frameDelay 1000 / FPS
 
-#define GET(PATH) string(CHEESE_ENGINE + "/" + PATH).c_str()   // Get relative path despite of the place of running the project
+#define GET(PATH)                                                              \
+    string(CHEESE_ENGINE + "/" + PATH)                                         \
+        .c_str() // Get relative path despite of the place of running the
+                 // project
 
 class Game {
-   public:
+  public:
     Game();
     ~Game();
     static void stopGame();
-    static void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
+    static void init(const char *title, int xpos, int ypos, int width,
+                     int height, bool fullscreen);
     static void handleEvents();
     static void update();
     static void render();
@@ -38,7 +42,7 @@ class Game {
     static SDL_Window *window;
     static int w, h;
 
-   private:
+  private:
     static bool isRunning;
 };
 
